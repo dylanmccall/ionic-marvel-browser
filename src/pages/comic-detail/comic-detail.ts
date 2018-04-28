@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Items } from '../../providers';
+import { Comics } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -9,10 +9,9 @@ import { Items } from '../../providers';
   templateUrl: 'comic-detail.html'
 })
 export class ComicDetailPage {
-  item: any;
+  comic: any;
 
-  constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
-    this.item = navParams.get('item') || items.defaultItem;
+  constructor(public navCtrl: NavController, navParams: NavParams, comics: Comics) {
+    this.comic = navParams.get('comic');
   }
-
 }

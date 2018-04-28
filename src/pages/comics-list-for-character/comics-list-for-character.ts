@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers';
+import { Comic } from '../../models/comic';
+import { Comics } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -11,11 +11,13 @@ import { Items } from '../../providers';
 })
 export class ComicsListForCharacterPage {
   character: any;
-  currentItems: Item[];
+  currentComics: Comic[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
-    this.character = navParams.get('character') || items.defaultItem;
-    // this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, navParams: NavParams, public comics: Comics) {
+    this.character = navParams.get('character');
+    this.comics.getComicsForCharacterId(this.character.id).subscribe(
+      comics => { this.currentComics = comics }
+    );
   }
 
   /**
@@ -27,9 +29,9 @@ export class ComicsListForCharacterPage {
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openComic(comic: Comic) {
     this.navCtrl.push('ComicDetailPage', {
-      item: item
+      comic: comic
     });
   }
 }

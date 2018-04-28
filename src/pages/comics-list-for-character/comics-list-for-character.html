@@ -12,14 +12,13 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of currentItems">
-      <button ion-item (click)="openItem(item)">
+    <ion-item-sliding *ngFor="let comic of currentComics">
+      <button ion-item (click)="openComic(comic)">
         <ion-avatar item-start>
-          <img [src]="item.profilePic" />
+          <img [src]="comic.thumbnail.path" />
         </ion-avatar>
-        <h2>{{item.name}}</h2>
-        <p>{{item.about}}</p>
-        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+        <h2>{{comic.name}}</h2>
+        <p>{{comic.description}}</p>
       </button>
     </ion-item-sliding>
   </ion-list>

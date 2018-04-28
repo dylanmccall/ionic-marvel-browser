@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ item.name }}</ion-title>
+    <ion-title>{{ comic.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  <div class="comic-profile" text-center #profilePic [style.background-image]="'url(' + comic.coverImage + ')'">
   </div>
 
-  <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <p>{{item.about}}</p>
+  <div class="comic-detail" padding>
+    <h2>{{comic.name}}</h2>
+    <p>{{comic.about}}</p>
   </div>
 </ion-content>

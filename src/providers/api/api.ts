@@ -1,12 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  url: string = 'https://gateway.marvel.com:443/v1/public';
 
   constructor(public http: HttpClient) {
   }
@@ -27,6 +29,15 @@ export class Api {
     }
 
     return this.http.get(this.url + '/' + endpoint, reqOpts);
+  }
+
+  getList<T>(endpoint: string, params?: any, reqOpts?: any) : Observable<T[]> {
+    return this.get(endpoint, params, reqOpts).map(
+      response => {
+        const data = response['data'] || {};
+        return data['results'] || [];
+      }
+    );
   }
 
   post(endpoint: string, body: any, reqOpts?: any) {

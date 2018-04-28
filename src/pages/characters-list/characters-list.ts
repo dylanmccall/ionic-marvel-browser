@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers';
+import { Character } from '../../models/character';
+import { Characters } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -10,14 +10,16 @@ import { Items } from '../../providers';
   templateUrl: 'characters-list.html'
 })
 export class CharactersListPage {
-  currentItems: Item[];
+  currentCharacters: Character[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, public characters: Characters) {
+    this.characters.getAllCharacters().subscribe(
+      characters => { this.currentCharacters = characters }
+    );
   }
 
   /**
-   * The view loaded, let's query our items for the list
+   * The view loaded, let's query our characters for the list
    */
   ionViewDidLoad() {
   }
@@ -25,9 +27,9 @@ export class CharactersListPage {
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openCharacter(character: Character) {
     this.navCtrl.push('CharacterDetailPage', {
-      item: item
+      character: character
     });
   }
 }

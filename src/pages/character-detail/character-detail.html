@@ -1,20 +1,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ item.name }}</ion-title>
+    <ion-title>{{ character.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  <div class="character-profile" text-center #profilePic [style.background-image]="'url(' + character.previewImage + ')'">
   </div>
 
-  <div class="item-detail" padding>
-    <h2>{{item.name}}</h2>
-    <p>{{item.about}}</p>
+  <div class="character-detail" padding>
+    <h2>{{character.name}}</h2>
+    <p>{{character.about}}</p>
 
-    <button ion-item (click)="openComicsForCharacter(item)">Show comics</button>
+    <button ion-character (click)="openComicsForCharacter(character)">Show comics</button>
   </div>
 </ion-content>
